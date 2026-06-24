@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nguyen Nhat Ngoc — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --paper: #080A16;
+      /* Midnight dark blue */
+      --paper-deep: #0D0F26;
+      --gridline: rgba(139, 92, 246, 0.05);
+      --gridline-strong: rgba(139, 92, 246, 0.12);
+      --ink: #F8FAFC;
+      --ink-soft: #94A3B8;
+      --ink-faint: #475569;
+      --amber: #8B5CF6;
+      /* Deep Purple */
+      --amber-soft: rgba(139, 92, 246, 0.15);
+      --amber-hover: #7C3AED;
+      --teal: #00F5D4;
+      /* Neon Cyan */
+      --teal-soft: rgba(0, 245, 212, 0.15);
+      --card: #131435;
+      /* Dark Indigo Card */
+      --dark: #05060D;
+      --dark-line: rgba(139, 92, 246, 0.08);
+      --dark-line-strong: rgba(139, 92, 246, 0.18);
+      --max: 1080px;
+    }
+
+    html[data-theme="light"] {
+      --paper: #F0F4FF;
+      /* Light blue-gray */
+      --paper-deep: #E2E8F0;
+      --gridline: rgba(99, 102, 241, 0.08);
+      --gridline-strong: rgba(99, 102, 241, 0.15);
+      --ink: #0F172A;
+      --ink-soft: #475569;
+      --ink-faint: #94A3B8;
+      --amber: #6D28D9;
+      --amber-soft: rgba(109, 40, 217, 0.12);
+      --amber-hover: #5B21B6;
+      --teal: #0891B2;
+      --teal-soft: rgba(8, 145, 178, 0.12);
+      --card: #FFFFFF;
+      --dark: #0F172A;
+      --dark-line: rgba(109, 40, 217, 0.08);
+      --dark-line-strong: rgba(109, 40, 217, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      background-image:
+        linear-gradient(var(--gridline) 1px, transparent 1px),
+        linear-gradient(90deg, var(--gridline) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color .25s ease, color .25s ease;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    a {
+      color: inherit;
+      transition: color 0.2s ease;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    section {
+      padding: 96px 0;
+    }
+
+    @media (max-width:640px) {
+      section {
+        padding: 64px 0;
+      }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 2px;
+    }
+
+    /* ---------- NAV ---------- */
+    #nav {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      z-index: 50;
+      background: rgba(11, 15, 25, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--gridline-strong);
+      border-radius: 50px;
+      opacity: 0;
+      transform: translateY(-40px);
+      transition: opacity 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color .25s ease, border-color .25s ease;
+    }
+
+    html[data-theme="light"] #nav {
+      background: rgba(240, 244, 255, 0.7);
+    }
+
+    #nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 24px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 24px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .navlinks a {
+      text-decoration: none;
+      color: var(--ink-soft);
+      position: relative;
+      padding-bottom: 4px;
+      white-space: nowrap;
+    }
+
+    .navlinks a:hover {
+      color: var(--ink);
+    }
+
+    .navlinks a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 2px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transition: transform .25s ease;
+    }
+
+    .navlinks a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .theme-toggle {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--gridline-strong);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      transform: scale(1.1);
+      transition: all 0.2s;
+    }
+
+    @media (max-width:760px) {
+      .navlinks {
+        display: none;
+      }
+    }
+
+    /* ---------- BUTTONS ---------- */
+    .btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      letter-spacing: .03em;
+      padding: 11px 22px;
+      border: 1px solid var(--gridline-strong);
+      text-decoration: none;
+      color: var(--ink);
+      transition: all .2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      background: none;
+      border-radius: 50px;
+    }
+
+    .btn-fill {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: #FFFFFF;
+      font-weight: 500;
+    }
+
+    .btn-fill:hover {
+      background: var(--amber-hover);
+      border-color: var(--amber-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn:not(.btn-fill):hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      transform: translateY(-2px);
+    }
+
+    #nav .btn {
+      padding: 8px 18px;
+    }
+
+    /* dark-section variants (hero/contact) */
+    .panel-dark {
+      background: var(--dark);
+      color: #EDEFF2;
+      background-image:
+        linear-gradient(var(--dark-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--dark-line) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .panel-dark .ink-faint {
+      color: #9AA6AD;
+    }
+
+    .panel-dark .btn {
+      border-color: var(--dark-line-strong);
+      color: #EDEFF2;
+    }
+
+    .panel-dark .btn:not(.btn-fill):hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    /* ---------- HERO ---------- */
+    #hero {
+      padding: 160px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width:820px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .brand {
+        margin: 0 auto;
+      }
+    }
+
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    @media (max-width:820px) {
+      .eyebrow {
+        justify-content: center;
+      }
+    }
+
+    .eyebrow span.line {
+      width: 34px;
+      height: 1px;
+      background: var(--teal);
+      display: inline-block;
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(34px, 5.5vw, 56px);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-top: 10px;
+      color: var(--ink);
+    }
+
+    .hl-purple {
+      color: var(--amber);
+      position: relative;
+      background: linear-gradient(120deg, var(--amber-soft) 0%, rgba(139, 92, 246, 0) 100%);
+      padding: 0 4px;
+      border-radius: 4px;
+    }
+
+    .hl-cyan {
+      color: var(--teal);
+      position: relative;
+      background: linear-gradient(120deg, var(--teal-soft) 0%, rgba(0, 245, 212, 0) 100%);
+      padding: 0 4px;
+      border-radius: 4px;
+    }
+
+    #hero p.lede {
+      margin-top: 24px;
+      max-width: 560px;
+      color: #B7C0C7;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    @media (max-width:820px) {
+      #hero p.lede {
+        margin: 24px auto 0;
+      }
+    }
+
+    .hero-cta {
+      margin-top: 34px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width:820px) {
+      .hero-cta {
+        justify-content: center;
+      }
+    }
+
+    /* ---------- TILT CARDS & MASCOT ---------- */
+    .avatar-card {
+      border: 1px solid var(--dark-line-strong);
+      padding: 28px;
+      text-align: center;
+      border-radius: 24px;
+      background: rgba(19, 20, 53, 0.4);
+      backdrop-filter: blur(8px);
+    }
+
+    .mascot-container {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: repeating-radial-gradient(circle, transparent 0, transparent 18px, var(--dark-line) 19px, var(--dark-line) 20px);
+      border: 1px solid var(--dark-line-strong);
+      border-radius: 50%;
+    }
+
+    #mascot-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    #mascot-head-group,
+    #mascot-pupils,
+    #mascot-glasses,
+    #mascot-hair-front,
+    #mascot-hair-long-left,
+    #mascot-hair-long-right {
+      transition: transform 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform-origin: center;
+    }
+
+    .avatar-card .name {
+      margin-top: 18px;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .avatar-card .role {
+      margin-top: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      color: #9AA6AD;
+    }
+
+    .avatar-card .ph-note {
+      margin-top: 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: #5d6a70;
+      line-height: 1.6;
+    }
+
+    .hero-graphic {
+      margin-top: 56px;
+      width: 100%;
+      max-width: 980px;
+    }
+
+    .hero-graphic svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .trace {
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .trace-noise-1 {
+      stroke: #312E81;
+      opacity: .55;
+    }
+
+    .trace-noise-2 {
+      stroke: #1E1B4B;
+      opacity: .55;
+    }
+
+    .trace-signal {
+      stroke: var(--amber);
+      stroke-width: 2.2;
+      filter: drop-shadow(0 0 5px rgba(139, 92, 246, .5));
+    }
+
+    .grid-dot {
+      fill: #1E293B;
+    }
+
+    .grid-dot.active {
+      fill: var(--teal);
+      filter: drop-shadow(0 0 4px rgba(0, 245, 212, .7));
+    }
+
+    .path-line {
+      fill: none;
+      stroke: var(--teal);
+      stroke-width: 2.2;
+      stroke-dasharray: 6 7;
+      filter: drop-shadow(0 0 5px rgba(0, 245, 212, .5));
+      animation: flow 1.8s linear infinite;
+    }
+
+    @keyframes flow {
+      to {
+        stroke-dashoffset: -130;
+      }
+    }
+
+    .bridge {
+      stroke: #3c4a52;
+      stroke-width: 1;
+      stroke-dasharray: 2 4;
+    }
+
+    .cap {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      fill: #7c8990;
+      letter-spacing: .06em;
+    }
+
+    /* ---------- SECTION HEADERS ---------- */
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      margin-bottom: 46px;
+      flex-wrap: wrap;
+    }
+
+    .sec-num {
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--teal);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .sec-head h2 {
+      font-size: clamp(28px, 4vw, 36px);
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .sec-head .rule {
+      flex: 1;
+      height: 1px;
+      background: var(--gridline-strong);
+      min-width: 40px;
+    }
+
+    .panel-dark .sec-num,
+    .panel-dark .sec-head h2 {
+      color: #EDEFF2;
+    }
+
+    .panel-dark .sec-head .rule {
+      background: var(--dark-line-strong);
+    }
+
+    /* ---------- TILT CARDS DEFINITIONS ---------- */
+    .value-card,
+    .skill-cat,
+    .proj-card,
+    .contact-item {
+      transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.25s ease, box-shadow 0.25s ease;
+      border-radius: 20px;
+      background: var(--card);
+      border: 1px solid var(--gridline-strong);
+      overflow: hidden;
+    }
+
+    .value-card:hover,
+    .skill-cat:hover,
+    .proj-card:hover,
+    .contact-item:hover {
+      border-color: var(--amber);
+      box-shadow: 0 12px 30px rgba(139, 92, 246, 0.18);
+    }
+
+    .value-card:nth-child(odd):hover,
+    .skill-cat:nth-child(odd):hover,
+    .proj-card:nth-child(odd):hover,
+    .contact-item:nth-child(odd):hover {
+      transform: translateY(-6px) rotate(1.2deg) scale(1.02);
+    }
+
+    .value-card:nth-child(even):hover,
+    .skill-cat:nth-child(even):hover,
+    .proj-card:nth-child(even):hover,
+    .contact-item:nth-child(even):hover {
+      transform: translateY(-6px) rotate(-1.2deg) scale(1.02);
+    }
+
+    /* ---------- ABOUT ---------- */
+    #about .grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 56px;
+    }
+
+    @media (max-width:780px) {
+      #about .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    #about p {
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    #about p+p {
+      margin-top: 14px;
+    }
+
+    .values {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .value-card {
+      padding: 20px 22px;
+    }
+
+    .value-card .k {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .value-card .v {
+      font-size: 14.5px;
+      margin-top: 6px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    /* ---------- SKILLS ---------- */
+    .skill-note {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--ink-faint);
+      margin-bottom: 30px;
+      max-width: 620px;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      background: transparent;
+      border: none;
+    }
+
+    @media (max-width:720px) {
+      .skill-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .skill-cat {
+      padding: 26px 24px;
+    }
+
+    .skill-cat .cat-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .skill-row {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 8px 0;
+      border-top: 1px solid var(--gridline);
+    }
+
+    .skill-row:first-of-type {
+      border-top: none;
+    }
+
+    .skill-row .s-name {
+      font-size: 14.5px;
+    }
+
+    .level {
+      display: flex;
+      gap: 4px;
+    }
+
+    .level i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gridline-strong);
+      display: block;
+    }
+
+    .level i.on {
+      background: var(--amber);
+    }
+
+    .level i.on.teal {
+      background: var(--teal);
+    }
+
+    .level-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      color: var(--ink-faint);
+      margin-left: 6px;
+    }
+
+    .edit-note {
+      margin-top: 18px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-faint);
+    }
+
+    /* ---------- PROJECTS ---------- */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    @media (max-width:900px) {
+      .proj-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width:640px) {
+      .proj-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .proj-card {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .thumb {
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--gridline-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--paper-deep);
+      transition: background 0.2s;
+    }
+
+    .proj-card:hover .thumb {
+      background: rgba(139, 92, 246, 0.08);
+    }
+
+    .thumb svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .proj-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .proj-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .proj-card h3 {
+      font-size: 18px;
+      margin-top: 8px;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .proj-body p {
+      font-size: 13.8px;
+      color: var(--ink-soft);
+      margin-top: 8px;
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .proj-link {
+      margin-top: 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+    }
+
+    .proj-card.placeholder {
+      border-style: dashed;
+      cursor: default;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .proj-card.placeholder:hover {
+      transform: none;
+      border-color: var(--gridline-strong);
+      box-shadow: none;
+    }
+
+    .proj-card.placeholder .proj-body {
+      text-align: center;
+      color: var(--ink-faint);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      justify-content: center;
+    }
+
+    /* ---------- MODAL ---------- */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 7, 16, 0.85);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      backdrop-filter: blur(6px);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--card);
+      color: var(--ink);
+      max-width: 760px;
+      width: 100%;
+      max-height: 86vh;
+      overflow-y: auto;
+      border: 1px solid var(--gridline-strong);
+      position: relative;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-inner {
+      padding: 40px;
+    }
+
+    @media (max-width:640px) {
+      .modal-inner {
+        padding: 26px;
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--gridline-strong);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      transform: rotate(90deg);
+      transition: all 0.2s;
+    }
+
+    .modal .m-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .modal h3 {
+      font-size: 26px;
+      margin-top: 12px;
+      max-width: 560px;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .modal .m-role {
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      background: var(--amber-soft);
+      color: var(--amber);
+      padding: 6px 14px;
+      border-radius: 50px;
+      border: 1px solid rgba(139, 92, 246, 0.15);
+    }
+
+    .m-section {
+      margin-top: 26px;
+    }
+
+    .m-section .m-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .m-section p {
+      margin-top: 8px;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .m-section ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .m-section li {
+      margin-top: 6px;
+    }
+
+    .m-stats {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      background: transparent;
+      border: none;
+    }
+
+    .m-stats .stat {
+      background: var(--paper-deep);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid var(--gridline-strong);
+    }
+
+    .m-stats .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--amber);
+    }
+
+    .m-stats .num.teal {
+      color: var(--teal);
+    }
+
+    .m-stats .lab {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      color: var(--ink-faint);
+      margin-top: 4px;
+    }
+
+    .m-media {
+      margin-top: 10px;
+      border: 1px dashed var(--gridline-strong);
+      padding: 26px;
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-faint);
+      border-radius: 12px;
+      background: var(--paper-deep);
+    }
+
+    .m-chips {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .m-chip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      border: 1px solid var(--gridline-strong);
+      padding: 5px 12px;
+      color: var(--ink-soft);
+      border-radius: 50px;
+      background: var(--paper-deep);
+    }
+
+    .m-demo {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ---------- EXPERIENCE / EDUCATION ---------- */
+    .timeline-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+
+    @media (max-width:780px) {
+      .timeline-cols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .timeline-col h3 {
+      font-size: 15px;
+      font-family: 'IBM Plex Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--teal);
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .tl-item {
+      position: relative;
+      padding-left: 28px;
+      padding-bottom: 28px;
+      border-left: 2px solid var(--gridline-strong);
+    }
+
+    .tl-item:last-child {
+      border-color: transparent;
+    }
+
+    .tl-item::before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 0 4px var(--amber-soft);
+    }
+
+    .tl-item.teal::before {
+      background: var(--teal);
+      box-shadow: 0 0 0 4px var(--teal-soft);
+    }
+
+    .tl-item .time {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      color: var(--ink-faint);
+      font-weight: 600;
+    }
+
+    .tl-item h4 {
+      font-size: 16px;
+      margin-top: 6px;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .tl-item .org {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      margin-top: 3px;
+    }
+
+    .tl-item p {
+      font-size: 13.8px;
+      color: var(--ink-soft);
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 34px;
+    }
+
+    @media (max-width:780px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .field label {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #9AA6AD;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      background: var(--paper-deep);
+      border: 1px solid var(--gridline-strong);
+      color: var(--ink);
+      padding: 13px 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14.5px;
+      border-radius: 12px;
+      transition: all 0.25s;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--amber);
+      outline: none;
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-note {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: #5d6a70;
+      margin-top: 8px;
+    }
+
+    .contact-item {
+      padding: 24px;
+    }
+
+    .contact-item .k {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .contact-item .v {
+      margin-top: 8px;
+      font-size: 16px;
+      word-break: break-word;
+      font-weight: 500;
+    }
+
+    .contact-item a {
+      text-decoration: none;
+      border-bottom: 1px solid var(--gridline-strong);
+    }
+
+    .contact-item a:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer.site-footer {
+      background: var(--dark);
+      border-top: 1px solid var(--dark-line);
+      padding: 64px 0 32px;
+      color: #EDEFF2;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 36px;
+      padding-bottom: 34px;
+      border-bottom: 1px solid var(--dark-line);
+    }
+
+    @media (max-width:720px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+    }
+
+    .footer-grid h5 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: #9AA6AD;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .footer-grid .f-links {
+      display: grid;
+      gap: 12px;
+      font-size: 13.8px;
+    }
+
+    .footer-grid .f-links a {
+      text-decoration: none;
+      color: #cbd2d6;
+    }
+
+    .footer-grid .f-links a:hover {
+      color: var(--amber);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding-top: 22px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: #5d6a70;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform .8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* staggered entrance animations */
+    .fade-up-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .fade-up-in.loaded {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-100 {
+      transition-delay: 0.1s !important;
+    }
+
+    .delay-200 {
+      transition-delay: 0.2s !important;
+    }
+
+    .delay-300 {
+      transition-delay: 0.3s !important;
+    }
+
+    .delay-400 {
+      transition-delay: 0.4s !important;
+    }
+
+    .delay-500 {
+      transition-delay: 0.5s !important;
+    }
+
+    .delay-600 {
+      transition-delay: 0.6s !important;
+    }
+
+    .delay-700 {
+      transition-delay: 0.7s !important;
+    }
+
+    .delay-800 {
+      transition-delay: 0.8s !important;
+    }
+
+    .delay-900 {
+      transition-delay: 0.9s !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ INTRO LOADING SCREEN ============ -->
+  <div id="intro-loader"
+    style="position: fixed; inset: 0; background: #080A16; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1); pointer-events: all; font-family: 'Plus Jakarta Sans', sans-serif;">
+    <div style="text-align: left; max-width: 320px; width: 100%; padding: 20px;">
+      <div id="loader-phrase"
+        style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; color: var(--teal); letter-spacing: 0.15em; margin-bottom: 12px; height: 18px; overflow: hidden; opacity: 0.8;">
+        INITIALIZING...</div>
+      <div
+        style="display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2px solid var(--gridline-strong); padding-bottom: 8px;">
+        <span id="loader-text"
+          style="font-family: 'Syne', sans-serif; font-size: clamp(48px, 8vw, 72px); font-weight: 800; line-height: 1; color: var(--ink);">00</span>
+        <span
+          style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--ink-faint); margin-left: 8px; font-weight: 600;">%</span>
+      </div>
+      <div
+        style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-soft); margin-top: 8px; display: flex; justify-content: space-between;">
+        <span>SYS.STATUS: OK</span>
+        <span>PORTFOLIO 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <nav id="nav">
+    <div class="wrap">
+      <div class="brand">
+        <div class="mini-mascot-container"
+          style="width: 26px; height: 26px; border-radius: 50%; overflow: hidden; background: var(--amber-soft); border: 1px solid var(--amber); display: inline-flex; align-items: center; justify-content: center; margin-right: 8px; flex-shrink: 0;">
+          <svg viewBox="0 0 100 100" style="width: 100%; height: 100%; overflow: visible;">
+            <defs>
+              <linearGradient id="hair-grad-mini" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8B5CF6" />
+                <stop offset="100%" stop-color="#06B6D4" />
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="45" fill="none" stroke="var(--amber)" stroke-width="2" />
+            <circle cx="50" cy="50" r="25" fill="#FFE4E6" />
+            <path d="M30,35 C20,50 20,80 30,90 C40,100 60,100 70,90 C80,80 80,50 70,35 Z" fill="#2E2B42" />
+            <path d="M32,45 C28,55 25,68 27,80 C28,85 31,88 30,91 C29,94 26,92 25,87 C23,77 24,62 28,47 Z"
+              fill="#1E1E2E" />
+            <path d="M68,45 C72,55 75,68 73,80 C72,85 69,88 70,91 C71,94 74,92 75,87 C77,77 76,62 72,47 Z"
+              fill="#1E1E2E" />
+            <ellipse cx="40" cy="50" rx="3.5" ry="5.5" fill="#1E192B" />
+            <ellipse cx="60" cy="50" rx="3.5" ry="5.5" fill="#1E192B" />
+            <path d="M46,60 Q50,63 54,60" stroke="#E11D48" stroke-width="1.5" stroke-linecap="round" fill="none" />
+            <circle cx="39" cy="50" r="8" fill="none" stroke="#F43F5E" stroke-width="1.5" />
+            <circle cx="61" cy="50" r="8" fill="none" stroke="#F43F5E" stroke-width="1.5" />
+            <line x1="47" y1="50" x2="53" y2="50" stroke="#F43F5E" stroke-width="1.5" />
+          </svg>
+        </div>
+        NGUYEN NHAT NGOC
+      </div>
+      <div class="navlinks">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle light / dark theme"
+          aria-label="Toggle light / dark theme">☀</button>
+        <a class="btn btn-fill" href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="panel-dark">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow fade-up-in delay-200"><span class="line"></span> FACULTY OF APPLIED SCIENCE — HCMUT,
+            VNU-HCM</div>
+          <h1 class="hero-title fade-up-in delay-300">I'm <span class="hl-purple">Nhat Ngoc</span> — A student majoring
+            in <span class="hl-cyan">Data Science</span>.</h1>
+          <p class="lede fade-up-in delay-400">I am a Data Science student at Ho Chi Minh City University of Technology
+            (HCMUT). This is where I share my learning journey and projects.</p>
+          <div class="hero-cta fade-up-in delay-500">
+            <a class="btn btn-fill" href="#projects">View Projects →</a>
+            <a class="btn" href="#contact">Contact Me</a>
+          </div>
+
+          <div class="hero-graphic fade-up-in delay-700">
+            <svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+              <path class="trace trace-noise-1"
+                d="M10,120 C40,60 60,170 90,110 C120,50 150,160 180,100 C210,40 240,150 270,95 C300,45 330,140 360,110" />
+              <path class="trace trace-noise-2"
+                d="M10,140 C40,180 60,90 90,150 C120,190 150,80 180,140 C210,185 240,75 270,135 C300,180 330,90 360,120" />
+              <path class="trace trace-signal"
+                d="M10,110 C50,108 90,112 130,110 C170,108 200,150 240,112 C270,84 300,118 360,112" />
+              <text class="cap" x="10" y="195">EMG / IMU SIGNAL IN THE NOISE</text>
+              <line class="bridge" x1="380" y1="112" x2="470" y2="112" />
+              <g id="grid-nodes"></g>
+              <path class="path-line" id="path-route"
+                d="M520,170 L520,130 L560,130 L560,90 L600,90 L640,90 L640,50 L680,50 L720,50 L760,50" />
+              <text class="cap" x="520" y="200">A* SEARCH ON STATE GRID</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="avatar-card fade-up-in delay-400">
+          <div class="mascot-container">
+            <svg id="mascot-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="var(--amber)" stop-opacity="0.3" />
+                  <stop offset="100%" stop-color="var(--paper)" stop-opacity="0" />
+                </radialGradient>
+                <linearGradient id="hair-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8B5CF6" />
+                  <stop offset="100%" stop-color="#06B6D4" />
+                </linearGradient>
+              </defs>
+              <circle cx="100" cy="100" r="85" fill="url(#glow)" />
+              <circle cx="100" cy="100" r="75" fill="none" stroke="var(--gridline-strong)" stroke-width="1.5"
+                stroke-dasharray="5 5" />
+              <circle cx="100" cy="100" r="78" fill="none" stroke="var(--amber)" stroke-width="1" opacity="0.4" />
+              <g id="mascot-body-group">
+                <path d="M60,165 C60,140 75,130 100,130 C125,130 140,140 140,165" fill="#1E293B"
+                  stroke="var(--gridline-strong)" stroke-width="2" />
+                <path d="M85,130 L100,148 L115,130 Z" fill="url(#hair-grad)" opacity="0.8" />
+                <path d="M92,130 L100,140 L108,130 Z" fill="#0F172A" />
+                <g id="mascot-head-group">
+                  <rect x="92" y="112" width="16" height="22" rx="4" fill="#FED7AA" />
+                  <path
+                    d="M65,70 C55,90 55,120 65,130 C75,140 125,140 135,130 C145,120 145,90 135,70 Z M50,110 C35,140 32,180 32,190 C45,190 55,170 55,150 Z M150,110 C165,140 168,180 168,190 C155,190 145,170 145,150 Z"
+                    fill="#1E1E2E" />
+                  <circle cx="67" cy="98" r="7" fill="#FED7AA" />
+                  <circle cx="133" cy="98" r="7" fill="#FED7AA" />
+                  <path
+                    d="M70,90 C70,115 80,125 100,125 C120,125 130,115 130,90 C130,75 120,70 100,70 C80,70 70,75 70,90 Z"
+                    fill="#FFE4E6" />
+                  <ellipse cx="80" cy="104" rx="6" ry="3" fill="#FDA4AF" opacity="0.6" />
+                  <ellipse cx="120" cy="104" rx="6" ry="3" fill="#FDA4AF" opacity="0.6" />
+                  <g id="mascot-eyes">
+                    <ellipse cx="84" cy="95" rx="7" ry="9" fill="#1E192B" />
+                    <ellipse cx="116" cy="95" rx="7" ry="9" fill="#1E192B" />
+                    <g id="mascot-pupils">
+                      <ellipse cx="84" cy="95" rx="4.5" ry="6" fill="url(#hair-grad)" />
+                      <circle cx="82.5" cy="92.5" r="1.5" fill="#FFFFFF" />
+                      <circle cx="85.5" cy="97" r="0.8" fill="#FFFFFF" />
+                      <ellipse cx="116" cy="95" rx="4.5" ry="6" fill="url(#hair-grad)" />
+                      <circle cx="114.5" cy="92.5" r="1.5" fill="#FFFFFF" />
+                      <circle cx="117.5" cy="97" r="0.8" fill="#FFFFFF" />
+                    </g>
+                  </g>
+                  <path d="M77,84 C80,82 86,83 89,86" stroke="#1E1E2E" stroke-width="1.5" stroke-linecap="round"
+                    fill="none" />
+                  <path d="M123,84 C120,82 114,83 111,86" stroke="#1E1E2E" stroke-width="1.5" stroke-linecap="round"
+                    fill="none" />
+                  <path d="M97,108 Q100,111 103,108" stroke="#E11D48" stroke-width="1.8" stroke-linecap="round"
+                    fill="none" />
+                  <g id="mascot-glasses" opacity="0.9">
+                    <circle cx="83" cy="96" r="13" fill="none" stroke="#F43F5E" stroke-width="2" />
+                    <circle cx="117" cy="96" r="13" fill="none" stroke="#F43F5E" stroke-width="2" />
+                    <path d="M96,96 L104,96" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round" />
+                    <path d="M70,96 L66,94" stroke="#F43F5E" stroke-width="2" />
+                    <path d="M130,96 L134,94" stroke="#F43F5E" stroke-width="2" />
+                  </g>
+                  <g id="mascot-hair-front">
+                    <path id="mascot-hair-long-left"
+                      d="M68,70 C60,95 52,125 54,165 C55,170 62,175 60,180 C58,185 52,180 50,170 C46,145 48,110 58,75 Z"
+                      stroke="#1E1E2E" stroke-width="1" fill="#2E2B42" />
+                    <path d="M59,85 C55,110 52,135 55,160" stroke="url(#hair-grad)" stroke-width="2.5"
+                      stroke-linecap="round" fill="none" opacity="0.5" />
+
+                    <path id="mascot-hair-long-right"
+                      d="M132,70 C140,95 148,125 146,165 C145,170 138,175 140,180 C142,185 148,180 150,170 C154,145 152,110 142,75 Z"
+                      stroke="#1E1E2E" stroke-width="1" fill="#2E2B42" />
+                    <path d="M141,85 C145,110 148,135 145,160" stroke="url(#hair-grad)" stroke-width="2.5"
+                      stroke-linecap="round" fill="none" opacity="0.5" />
+
+                    <path
+                      d="M66,72 C75,60 125,60 134,72 C130,70 120,68 112,74 C106,78 102,82 100,82 C98,82 94,78 88,74 C80,68 70,70 66,72 Z"
+                      fill="#2E2B42" />
+                    <path d="M74,70 Q100,64 126,70" stroke="url(#hair-grad)" stroke-width="2.5" stroke-linecap="round"
+                      fill="none" opacity="0.6" />
+                  </g>
+                  <g id="mascot-headset">
+                    <path d="M74,68 C80,60 120,60 126,68" stroke="var(--ink-soft)" stroke-width="3" fill="none" />
+                    <rect x="62" y="88" width="8" height="20" rx="3" fill="var(--teal)"
+                      filter="drop-shadow(0 0 3px rgba(6,182,212,0.8))" />
+                    <rect x="130" y="88" width="8" height="20" rx="3" fill="var(--teal)"
+                      filter="drop-shadow(0 0 3px rgba(6,182,212,0.8))" />
+                    <path d="M66,104 Q72,114 84,114" stroke="var(--ink-soft)" stroke-width="2" stroke-linecap="round"
+                      fill="none" />
+                    <circle cx="84" cy="114" r="2.5" fill="var(--amber)"
+                      filter="drop-shadow(0 0 2px rgba(168,85,247,0.8))" />
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="name">Nguyen Nhat Ngoc</div>
+          <div class="role">Data Science Student — HCMUT</div>
+          <div class="ph-note">Interactive Mascot —<br>move your mouse to rotate head and eyes!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="reveal">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num mono">01</span>
+        <h2>About Me</h2><span class="rule"></span>
+      </div>
+      <div class="grid">
+        <div class="values">
+          <div class="value-card">
+            <div class="k">Philosophy</div>
+            <div class="v">Understand the problem before choosing tools — selecting the right features is more important
+              than using complex models.</div>
+          </div>
+          <div class="value-card">
+            <div class="k">Work Ethic</div>
+            <div class="v">Work step-by-step, document the process clearly so it can be verified and reproduced.</div>
+          </div>
+          <div class="value-card">
+            <div class="k">Interests</div>
+            <div class="v">Biological signal processing, feature engineering, and a strong foundation in algorithms.
+            </div>
+          </div>
+        </div>
+        <div>
+          <p>I am a Data Science student in the Faculty of Applied Science at Ho Chi Minh City University of Technology
+            (HCMUT — VNU-HCM). I became interested in data and algorithms through foundational courses at university,
+            and have gradually applied them to real-world problems.</p>
+          <p>My most memorable project so far is participating in the <b>ABC 2026 Multimodal Movement Detection
+              Challenge</b>, where I was responsible for feature extraction from EMG–IMU data in a multimodal movement
+            recognition system.</p>
+          <p>In addition, I have completed several course projects using C++ and Python to strengthen my core
+            understanding of data structures and algorithmic thinking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills" class="reveal">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num mono">02</span>
+        <h2>Skills</h2><span class="rule"></span>
+      </div>
+      <p class="skill-note">These are the tools and software I am learning and working with at a basic level.</p>
+
+      <div class="skill-grid">
+        <div class="skill-cat">
+          <div class="cat-name">Technical Skills</div>
+          <div class="skill-row"><span class="s-name">Signal feature extraction (time / freq / time-freq)</span><span
+              class="level">FAMILIAR</span></div>
+          <div class="skill-row"><span class="s-name">Confusion-driven feature selection</span><span
+              class="level">FAMILIAR</span></div>
+          <div class="skill-row"><span class="s-name">Search algorithm design (A*, graph search)</span><span
+              class="level">FAMILIAR</span></div>
+          <div class="skill-row"><span class="s-name">Data structures &amp; object-oriented programming</span><span
+              class="level">FAMILIAR</span></div>
+        </div>
+
+        <div class="skill-cat">
+          <div class="cat-name">Tools &amp; Software</div>
+          <div class="skill-row"><span class="s-name">Python</span><span class="level">PROFICIENT</span></div>
+          <div class="skill-row"><span class="s-name">C++</span><span class="level">INTERMEDIATE</span></div>
+          <div class="skill-row"><span class="s-name">Git / GitHub</span><span class="level">PROFICIENT</span></div>
+          <div class="skill-row"><span class="s-name">SQL</span><span class="level">PROFICIENT</span></div>
+        </div>
+
+        <div class="skill-cat">
+          <div class="cat-name">Soft Skills</div>
+          <div class="skill-row"><span class="s-name">Teamwork</span></div>
+          <div class="skill-row"><span class="s-name">Analytical Thinking</span></div>
+          <div class="skill-row"><span class="s-name">Self-learning &amp; Research</span></div>
+          <div class="skill-row"><span class="s-name">Time Management</span></div>
+        </div>
+
+        <div class="skill-cat" style="display:flex; flex-direction:column; justify-content:center;">
+          <div class="cat-name">Proficiency Legend</div>
+          <div class="skill-row" style="border-top:none;"><span class="level-label" style="margin-left:0;">PROFICIENT —
+              2+ years of practical application in projects</span></div>
+          <div class="skill-row"><span class="level-label" style="margin-left:0;">INTERMEDIATE — Solid hands-on
+              experience and practical knowledge</span></div>
+          <div class="skill-row"><span class="level-label" style="margin-left:0;">FAMILIAR — Applied in course projects
+              or challenges</span></div>
+          <div class="edit-note">✎ Feel free to update these skills based on your progress.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" class="reveal">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num mono">03</span>
+        <h2>Projects / Portfolio</h2><span class="rule"></span>
+      </div>
+      <p class="skill-note">I have participated in a research challenge and several course projects. Click on each card
+        to view details.</p>
+
+      <div class="proj-grid">
+        <button class="proj-card" onclick="openProject('abc')">
+          <div class="thumb">
+            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5,55 C20,30 30,75 45,50 C60,28 75,70 90,48" fill="none" stroke="var(--amber)"
+                stroke-width="2.2" />
+              <path d="M5,65 C20,80 30,40 45,68 C60,85 75,38 90,60" fill="none" stroke="var(--teal)" stroke-width="1.6"
+                opacity=".6" />
+            </svg>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tag">Research / Machine Learning</div>
+            <h3>ABC 2026 Challenge — EMG–IMU Feature Pipeline</h3>
+            <p>Multi-domain feature extraction and selection for multimodal movement recognition.</p>
+            <div class="proj-link">View Details →</div>
+          </div>
+        </button>
+
+        <button class="proj-card" onclick="openProject('astar')">
+          <div class="thumb">
+            <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+              <g id="thumb-grid"></g>
+            </svg>
+          </div>
+          <div class="proj-body">
+            <div class="proj-tag">Course Project / Algorithms</div>
+            <h3>A* Pathfinding Toolkit</h3>
+            <p>Implemented A* from scratch in C++ for 4 different pathfinding problems.</p>
+            <div class="proj-link">View Details →</div>
+          </div>
+        </button>
+
+        <div class="proj-card placeholder">
+          <div class="proj-body">
+            <div>Other Projects</div>
+            <div style="margin-top:6px;">Coming soon —<br>content is being updated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- modal -->
+  <div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this) closeProject()">
+    <div class="modal">
+      <div class="modal-inner" id="modalContent"></div>
+      <button class="modal-close" onclick="closeProject()" aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  <!-- ============ EXPERIENCE & EDUCATION ============ -->
+  <section id="experience" class="reveal">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num mono">04</span>
+        <h2>Experience &amp; Education</h2><span class="rule"></span>
+      </div>
+      <div class="timeline-cols">
+        <div class="timeline-col">
+          <h3>Experience</h3>
+          <div class="tl-item">
+            <div class="time">2026</div>
+            <h4>Feature Engineer (EMG–IMU)</h4>
+            <div class="org">ABC 2026 Multimodal Movement Detection Challenge</div>
+            <p>Built a multi-domain feature extraction pipeline (time/freq/time-freq/nonlinear) for EMG–IMU data.
+              Co-designed confusion-driven feature selection strategies, achieving 96% subject-aware and 89.4%
+              cross-subject accuracy.</p>
+          </div>
+        </div>
+
+        <div class="timeline-col">
+          <h3>Education</h3>
+          <div class="tl-item teal">
+            <div class="time">Present</div>
+            <h4>B.S. in Data Science</h4>
+            <div class="org">Faculty of Applied Science — Ho Chi Minh City University of Technology (HCMUT, VNU-HCM)
+            </div>
+            <p>Relevant coursework: Data Structures &amp; Algorithms, Discrete Mathematics, Data Processing, and Machine
+              Learning.</p>
+          </div>
+          <div class="tl-item teal">
+            <div class="time">2029</div>
+            <h4>Expected Graduation</h4>
+            <div class="org">Ho Chi Minh City University of Technology (HCMUT)</div>
+            <p>Expected to graduate with a Bachelor's degree in Data Science.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="reveal panel-dark">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num mono">05</span>
+        <h2>Contact</h2><span class="rule"></span>
+      </div>
+      <p class="lede" style="margin-top:-22px; margin-bottom:34px;">Open for opportunities in research, internships, or
+        simply discussing biological data and algorithms. Leave me a message using the form below.</p>
+
+      <div class="contact-grid">
+        <form id="contactForm">
+          <div class="field">
+            <label for="f-name">Full Name</label>
+            <input id="f-name" type="text" required placeholder="Your Name">
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" type="email" required placeholder="you@email.com">
+          </div>
+          <div class="field">
+            <label for="f-msg">Message</label>
+            <textarea id="f-msg" required placeholder="Type your message here..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-fill">Send Message →</button>
+          <div class="form-note">The form will open your email application with pre-filled content to send directly to
+            me (no server storage).</div>
+        </form>
+
+        <div>
+          <div class="contact-item">
+            <div class="k">Email</div>
+            <div class="v"><a href="mailto:ngoc.nguyen1506@hcmut.edu.vn">ngoc.nguyen1506@hcmut.edu.vn</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="k">Phone</div>
+            <div class="v"><a href="tel:+84346472240">+84 346 472 240</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="k">Affiliation</div>
+            <div class="v">Ho Chi Minh City University of Technology, VNUHCM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-cta-banner"
+        style="background: linear-gradient(135deg, var(--amber) 0%, #4F46E5 100%); padding: 56px 40px; border-radius: 24px; text-align: center; margin-bottom: 48px; border: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden;">
+        <div
+          style="position: absolute; inset: 0; background: radial-gradient(circle at top left, rgba(0,245,212,0.3) 0%, transparent 70%);">
+        </div>
+        <h2
+          style="font-family: 'Syne', sans-serif; font-size: clamp(24px, 4vw, 36px); color: #FFFFFF; font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 8px;">
+          HAVE A QUESTION OR AN IDEA?</h2>
+        <p
+          style="color: rgba(255,255,255,0.8); font-size: 15px; max-width: 500px; margin: 12px auto 24px; font-family: 'Plus Jakarta Sans', sans-serif;">
+          Feel free to email me directly to discuss and build optimal data solutions together.</p>
+        <a href="mailto:ngoc.nguyen1506@hcmut.edu.vn" class="btn btn-fill"
+          style="background: #FFFFFF; color: #1E1B4B; border-color: #FFFFFF; font-weight: 600; padding: 12px 26px; border-radius: 50px; font-size: 13.5px; text-decoration: none;">Send
+          Email →</a>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <h5>Nguyen Nhat Ngoc</h5>
+          <p style="color:#9AA6AD; font-size:13.5px; max-width:260px;">Data Science student at HCMUT.</p>
+        </div>
+        <div>
+          <h5>Quick Links</h5>
+          <div class="f-links">
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 NGUYEN NHAT NGOC</div>
+        <div>GRID PAPER + DIGITAL SIGNALS</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    if (!document.documentElement.getAttribute('data-theme')) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      toggle.textContent = '☀';
+    }
+    toggle.addEventListener('click', () => {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      toggle.textContent = isDark ? '☾' : '☀';
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const loader = document.getElementById('intro-loader');
+      const loaderText = document.getElementById('loader-text');
+      const loaderPhrase = document.getElementById('loader-phrase');
+
+      if (!loader) return;
+
+      document.body.style.overflow = 'hidden';
+
+      const phrases = [
+        "INITIALIZING DATA PIPELINE...",
+        "LOADING EMG / IMU SIGNAL FILTERS...",
+        "CONSTRUCTING STATE GRID GRAPH...",
+        "COMPILING MATHEMATICAL MODELS...",
+        "TUNING HEURISTICS PATHFINDING...",
+        "ESTABLISHING HOST CONNECTION...",
+        "WELCOME TO PORTFOLIO"
+      ];
+
+      let count = 0;
+      const duration = 1200;
+      const intervalTime = 12;
+      const totalSteps = duration / intervalTime;
+
+      const interval = setInterval(() => {
+        count += 100 / totalSteps;
+        if (count >= 100) {
+          count = 100;
+          clearInterval(interval);
+
+          loaderText.textContent = "100";
+          loaderPhrase.textContent = phrases[phrases.length - 1];
+
+          setTimeout(() => {
+            loader.style.transform = "translateY(-100%)";
+            document.body.style.overflow = '';
+
+            setTimeout(() => {
+              const nav = document.getElementById('nav');
+              if (nav) nav.classList.add('loaded');
+
+              document.querySelectorAll('.fade-up-in').forEach(el => {
+                el.classList.add('loaded');
+              });
+            }, 200);
+
+            setTimeout(() => {
+              loader.remove();
+            }, 1500);
+
+          }, 300);
+
+        } else {
+          const displayVal = Math.floor(count);
+          loaderText.textContent = displayVal.toString().padStart(2, '0');
+
+          const phraseIdx = Math.floor((count / 100) * (phrases.length - 1));
+          loaderPhrase.textContent = phrases[phraseIdx];
+        }
+      }, intervalTime);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      const mascot = document.getElementById('mascot-svg');
+      if (!mascot) return;
+      const rect = mascot.getBoundingClientRect();
+      const mascotCenterX = rect.left + rect.width / 2;
+      const mascotCenterY = rect.top + rect.height / 2;
+      const dx = e.clientX - mascotCenterX;
+      const dy = e.clientY - mascotCenterY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const strength = Math.min(dist / 250, 1);
+      const angle = Math.atan2(dy, dx);
+
+      const maxHead = 5.5;
+      const maxPupil = 3.5;
+      const maxGlasses = 4.5;
+      const maxHair = 2.0;
+      const maxHairLong = -2.5;
+
+      const headX = Math.cos(angle) * maxHead * strength;
+      const headY = Math.sin(angle) * maxHead * strength;
+      const pupilX = Math.cos(angle) * maxPupil * strength;
+      const pupilY = Math.sin(angle) * maxPupil * strength;
+      const glassesX = Math.cos(angle) * maxGlasses * strength;
+      const glassesY = Math.sin(angle) * maxGlasses * strength;
+      const hairX = Math.cos(angle) * maxHair * strength;
+      const hairY = Math.sin(angle) * maxHair * strength;
+      const hairLongX = Math.cos(angle) * maxHairLong * strength;
+      const hairLongY = Math.sin(angle) * maxHairLong * strength;
+
+      const headGroup = document.getElementById('mascot-head-group');
+      const pupilsGroup = document.getElementById('mascot-pupils');
+      const glassesGroup = document.getElementById('mascot-glasses');
+      const hairGroup = document.getElementById('mascot-hair-front');
+      const hairLongLeft = document.getElementById('mascot-hair-long-left');
+      const hairLongRight = document.getElementById('mascot-hair-long-right');
+
+      if (headGroup) headGroup.style.transform = `translate(${headX}px, ${headY}px)`;
+      if (pupilsGroup) pupilsGroup.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+      if (glassesGroup) glassesGroup.style.transform = `translate(${glassesX}px, ${glassesY}px)`;
+      if (hairGroup) hairGroup.style.transform = `translate(${hairX}px, ${hairY}px)`;
+      if (hairLongLeft) hairLongLeft.style.transform = `translate(${hairLongX}px, ${hairLongY}px)`;
+      if (hairLongRight) hairLongRight.style.transform = `translate(${hairLongX}px, ${hairLongY}px)`;
+    });
+
+    (function () {
+      const ns = "http://www.w3.org/2000/svg";
+      const g = document.getElementById('grid-nodes');
+      const cols = 6, rows = 4, spacing = 32, ox = 488, oy = 40;
+      const activeCoords = new Set(["3,4", "3,3", "4,3", "4,2", "5,2", "6,2", "6,1", "7,1", "8,1", "9,1"]);
+      for (let c = 0; c < cols + 4; c++) {
+        for (let r = 0; r < rows + 1; r++) {
+          const cx = ox + c * spacing, cy = oy + r * spacing, key = c + "," + r;
+          const dot = document.createElementNS(ns, 'circle');
+          dot.setAttribute('cx', cx); dot.setAttribute('cy', cy); dot.setAttribute('r', 3.4);
+          dot.setAttribute('class', 'grid-dot' + (activeCoords.has(key) ? ' active' : ''));
+          g.appendChild(dot);
+        }
+      }
+    })();
+
+    (function () {
+      const ns = "http://www.w3.org/2000/svg";
+      const g = document.getElementById('thumb-grid');
+      const route = ["1,7", "2,7", "2,6", "3,6", "3,5", "4,5", "4,4", "5,4", "5,3", "6,3", "6,2"];
+      const routeSet = new Set(route);
+      for (let x = 0; x < 8; x++) {
+        for (let y = 0; y < 9; y++) {
+          const key = x + "," + y;
+          const dot = document.createElementNS(ns, 'circle');
+          dot.setAttribute('cx', 14 + x * 24); dot.setAttribute('cy', 10 + y * 10); dot.setAttribute('r', 2);
+          dot.setAttribute('fill', routeSet.has(key) ? 'var(--teal)' : 'var(--gridline-strong)');
+          g.appendChild(dot);
+        }
+      }
+    })();
+
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }); }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    const projects = {
+      abc: {
+        tag: "Research / Machine Learning",
+        title: "ABC 2026 Challenge — Disentangling Confusable Actions in Multimodal HAR",
+        role: "Role: Feature extraction for EMG–IMU",
+        problem: "Recognizing upper-body movement intentions from multimodal biological signals (EMG, IMU, EEG) is challenging due to confusable actions and performance drops when generalizing to new users (cross-subject).",
+        process: [
+          "Synchronized timestamps of 16 EMG channels and 18 IMU axes, followed by signal filtering and smoothing.",
+          "Extracted a 6,060-dimensional multi-domain feature space: time-domain, frequency-domain (FFT/wavelet), time-frequency (DWT), and nonlinear features.",
+          "Filtered features using Pearson correlation to remove redundant data (|r| > 0.9).",
+          "Selected features based on Cohen's d for confusable action pairs (subject-aware) and inter-subject stability (cross-subject), yielding 102-dimensional and 76-dimensional feature sets."
+        ],
+        stats: [
+          { num: "96.0%", lab: "Accuracy — subject-aware", cls: "" },
+          { num: "89.4%", lab: "Accuracy — cross-subject (LOSO)", cls: "" },
+          { num: "6,060 → 102", lab: "Original → selected features", cls: "teal" },
+          { num: "16", lab: "Subjects involved in data collection", cls: "teal" }
+        ],
+        tech: ["Python", "scikit-learn", "Feature Engineering", "FFT / DWT", "SVM (RBF)"],
+        demo: "Paper is currently under review/in progress — contact me if you would like to see the full report."
+      },
+      astar: {
+        tag: "Course Project / Algorithms — CO1007 Discrete Mathematics, HCMUT",
+        title: "A* Pathfinding Toolkit",
+        role: "Role: Individual project (implemented entirely from scratch)",
+        problem: "Course project requiring implementation of the A* algorithm from scratch (without external libraries) and applying it to 4 different pathfinding problems, each with distinct graph representations and heuristics.",
+        process: [
+          "Designed PathNode structure (linked list) to track the path and store f, g, and h values at each step.",
+          "Implemented a generic A* search core shared across all 4 problems.",
+          "Implemented 3 heuristics: Manhattan distance (4-directional grid), Chebyshev distance (8-directional grid with obstacles), and a variant for unweighted social networks.",
+          "Created an mapping function to convert floor plans to weighted adjacency matrices for the emergency evacuation problem."
+        ],
+        tasks: [
+          ["Degrees of separation in a social network", "unweighted graph"],
+          ["Delivery drone navigation in 2D space", "Manhattan heuristic"],
+          ["Warehouse robot obstacle avoidance", "Chebyshev heuristic"],
+          ["Emergency evacuation route planning", "grid → weighted adjacency matrix"]
+        ],
+        tech: ["C++", "A* Search", "Linked List", "Adjacency Matrix", "Heuristic Design"],
+        demo: "Source code includes Algo.cpp/h, PathNode.cpp/h, main.cpp — contact me to request access to the repository."
+      }
+    };
+
+    function openProject(id) {
+      const p = projects[id];
+      let html = `<div class="m-tag">${p.tag}</div><h3>${p.title}</h3><div class="m-role">${p.role}</div>`;
+      html += `<div class="m-section"><div class="m-label">Problem / Context</div><p>${p.problem}</p></div>`;
+      html += `<div class="m-section"><div class="m-label">Solution &amp; Process</div><ul>${p.process.map(x => `<li>${x}</li>`).join("")}</ul></div>`;
+      if (p.stats) {
+        html += `<div class="m-section"><div class="m-label">Results</div><div class="m-stats">${p.stats.map(s => `<div class="stat"><div class="num ${s.cls}">${s.num}</div><div class="lab">${s.lab}</div></div>`).join("")}</div></div>`;
+      }
+      if (p.tasks) {
+        html += `<div class="m-section"><div class="m-label">4 Solved Problems</div><ul>${p.tasks.map(t => `<li>${t[0]} — <span class="mono" style="color:var(--teal); font-size:12.5px;">${t[1]}</span></li>`).join("")}</ul></div>`;
+      }
+      html += `<div class="m-section"><div class="m-label">Demo Images / Videos</div><div class="m-media">Coming soon — demo media will be added here.</div></div>`;
+      html += `<div class="m-section"><div class="m-label">Technologies Used</div><div class="m-chips">${p.tech.map(t => `<span class="m-chip">${t}</span>`).join("")}</div></div>`;
+      html += `<div class="m-demo"><span class="mono" style="font-size:12.5px; color:var(--ink-faint);">${p.demo}</span></div>`;
+      document.getElementById('modalContent').innerHTML = html;
+      document.getElementById('modalBackdrop').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeProject() {
+      document.getElementById('modalBackdrop').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeProject(); });
+
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('f-name').value;
+      const email = document.getElementById('f-email').value;
+      const msg = document.getElementById('f-msg').value;
+      const subject = encodeURIComponent('Contact from Portfolio — ' + name);
+      const body = encodeURIComponent(msg + '\n\n— From: ' + name + ' (' + email + ')');
+      window.location.href = `mailto:ngoc.nguyen1506@hcmut.edu.vn?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+
+</html>
